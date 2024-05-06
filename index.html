@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,161 +9,84 @@
         #map {
             height: 500px;
             width: 100%;
+            border-radius: 10px;
+            border: none;
         }
-        body,html{
-background-color:black; 
-  
-}
 
-*{
-    font-size:10px;
-}
+        body,
+        html {
+            background-color: black;
 
-button{
-    background-color:rgb(100,200,100);
-    width:100%;
-    border:none;
-    border-radius:10px;
-    color:white;
-}
+        }
+
+        * {
+            font-size: 30px;
+            color: aliceblue;
+        }
+
+        button {
+            background-color: rgb(100, 200, 100);
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            color: white;
+        }
     </style>
 </head>
+
 <body>
-    <div id="map"></div>
+    <label for="bairro">Bairro:</label>
+    <input type="text" name="bairro" id="bairro">
 
     <script>
 
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
 
 
-function geocodeAddress(address, callback) {
-      var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(address);
+        function geocodeAddress(address, callback) {
+            var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(address);
 
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          if (data.length > 0) {
-            var latitude = data[0].lat;
-            var longitude = data[0].lon;
-            callback(latitude, longitude);
-          } else {
-            console.error("Endereço não encontrado.");
-            callback(null);
-          }
-        })
-        .catch(error => {
-          console.error('Erro ao processar a requisição:', error);
-          callback(null);
-        });
-    }
-    
-    
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        var latitude = data[0].lat;
+                        var longitude = data[0].lon;
+                        callback(latitude, longitude);
+                    } else {
+                        console.error("Endereço não encontrado.");
+                        callback(null);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao processar a requisição:', error);
+                    callback(null);
+                });
+        }
 
-    
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-               center: {lat: -30.0, lng: -53.0}, // Coordenadas do RS
-                zoom: 6
-            });
+ 
 
-            // Adiciona marcadores com textos e cores específicas
-            var locations = [
-                {lat: 0.0, lng: 0.0, name: '<b>🧒 </b> Fulano de Tal<br><b>Idade:</b>20 anos<br><b>Situaçao: </b> 🟢<br><b>Necessidades</b><br>💧🍲🍼⛽🚒🚑🚓🏠🪫🔦💡🚿👚💊🩺 <br><b>Ultimo Contato:</b> 06/05/2024<br><b>🏠 </b>Rua Antonio Chaves 383 <br><b>&#9742; </b>(54)999020659' , color: 'green',address: 'Rua Antonio Chaves 383 Galopolis Caxias do Sul'},
-                
-                
-                
-                
-                  {lat: 0.0, lng: 0.0, name: '<b>🧑 </b> Fulana de Tal<br><b>Idade:</b>20 anos<br><b>Situaçao: </b> 🔴<br><b>Necessidades</b><br>🚿👚💊🩺🧸🛏️🧴👟 <br><b>Ultimo Contato:</b> 06/05/2024<br><b>🏠 </b>Rua Jose Comerlatto <br><b>&#9742; </b>(54)999020659' , color: 'red',address: 'Rua Jose Comerlato Galopolis Caxias do Sul'},
-                  
-                  
-                  
-                  
-            {lat: 0.0, lng: 0.0, name: '<b>Ponto de Coleta:</b>Atacado Vantajão<br><br><b>Recursos Disponiveis:</b><br>💧🍲<br> <br><b>Responsavel: </b>Henrique Rigon <br><br><button>WhatsApp do Responsavel</button><br>' , color: 'blue',address: 'Atacado Vantajao Perimetral Caxias do Sul'},      
-                  
-                  
                
-            ];
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
 
-            locations.forEach(function(location) {
-            
-            
-     
-         
-    
-    geocodeAddress(location.address, function(latitude, longitude) {
-      if (latitude && longitude) {
-        
-        location.lat = parseFloat(latitude ) 
-        location.lng  = parseFloat(longitude)
-        
-        
-       
-        
-        
-      } else {
-        console.error("Não foi possível obter as coordenadas.");
-      }
-    });    
-    
-    
-    
-            
-            
-            setTimeout(()=>{
-                
-        
-        
-        console.log(location.lat +' '+location.lng)
-                
-                var marker = new google.maps.Marker({
-                    position: {lat: location.lat, lng: location.lng},
-                    map: map,
-                    title: location.name,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 10,
-                        fillColor: location.color,
-                        fillOpacity: 1,
-                        strokeColor: '#fff',
-                        strokeWeight: 2
+
+        geocodeAddress(location.address, function (latitude, longitude) {
+                    if (latitude && longitude) {
+
+                        location.lat = parseFloat(latitude)
+                        location.lng = parseFloat(longitude)
+
+
+                        console.log(latitude+' '+longitude)
+
+
+                    } else {
+                        console.error("Não foi possível obter as coordenadas.");
                     }
                 });
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: location.name
-                });
-
-                marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-                });
-                
-                
-            },5000)
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-                
-            });
-        }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&callback=initMap"
+        async defer></script>
 </body>
+
 </html>
