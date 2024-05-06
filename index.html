@@ -57,9 +57,7 @@
     <script>
 
 
-        if (localStorage.getItem('latitude')) {
-            window.location.href = 'locais.html';
-        }
+         
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
 
         var location = [
@@ -68,13 +66,17 @@
         ];
 
         document.getElementById('Buscar').addEventListener('click', () => {
-            geocodeAddress(location.address, function (latitude, longitude) {
+
+            var endereco = document.getElementById('Rua') + " " +document.getElementById('bairro') + " "+document.getElementById('Cidade')
+            
+
+            geocodeAddress(endereco, function (latitude, longitude) {
                 if (latitude && longitude) {
 
                     location.lat = parseFloat(latitude)
                     location.long = parseFloat(longitude)
 
-                    while (location.long === '0') { }
+                    //while (location.long === '0') { }
 
                     localStorage.setItem('latitude', location.lat)
                     localStorage.setItem('longitude', location.long)

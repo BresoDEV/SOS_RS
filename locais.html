@@ -77,8 +77,8 @@
 
             var locations = [
                 {
-                    lat: 0.0,
-                    lng: 0.0,
+                    lat: parseFloat(localStorage.getItem('latitude')),
+                    lng: parseFloat(localStorage.getItem('longitude')),
                     name: `Você esta aproximadamente nesse local`,
                     color: 'green',
                     address: 'Stok Center BR-116 Galopolis Caxias do Sul'
@@ -161,7 +161,9 @@
 
 
 
-                geocodeAddress(location.address, function (latitude, longitude) {
+                if(location.color !== 'green')
+                {
+                    geocodeAddress(location.address, function (latitude, longitude) {
                     if (latitude && longitude) {
 
                         location.lat = parseFloat(latitude)
@@ -175,6 +177,7 @@
                         console.error("Não foi possível obter as coordenadas.");
                     }
                 });
+                }
 
 
 
