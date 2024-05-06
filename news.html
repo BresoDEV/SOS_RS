@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Instagram</title>
+</head>
+<body>
+    <div id="profile"></div>
+
+    <script>
+        // Função para carregar o perfil do Instagram
+        function loadInstagramProfile(username) {
+            var url = 'https://www.instagram.com/' + username + '/?__a=1';
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Extrai os dados do perfil
+                    var profileData = data.graphql.user;
+                    
+                    // Cria o HTML para exibir o perfil
+                    var profileHTML = `
+                        <h2>${profileData.username}</h2>
+                        <img src="${profileData.profile_pic_url_hd}" alt="Profile Picture">
+                        <p>Seguidores: ${profileData.edge_followed_by.count}</p>
+                        <p>Seguindo: ${profileData.edge_follow.count}</p>
+                        <p>Biografia: ${profileData.biography}</p>
+                    `;
+                    
+                    // Exibe o perfil na página
+                    document.getElementById('profile').innerHTML = profileHTML;
+                })
+                .catch(error => console.error('Erro:', error));
+        }
+
+        // Chama a função para carregar o perfil
+        loadInstagramProfile('defesacivilrs'); // Substitua 'USERNAME' pelo nome de usuário do Instagram
+    </script>
+</body>
+</html>
+
+https://www.vakinha.com.br/vaquinha/a-maior-campanha-solidaria-do-rs/
+https://www.vakinha.com.br/tag/sos_enchentes
+https://www.instagram.com/defesacivilrs/
+https://www.instagram.com/caxiasdosul/
