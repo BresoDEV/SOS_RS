@@ -63,19 +63,27 @@
         }
 
 
- 
+
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -29.1631135, lng: -51.172142352384235 }, // Coordenadas do RS
                 zoom: 13
             });
 
-        
+
             // Adiciona marcadores com textos e cores específicas
-           
+
 
 
             var locations = [
+                {
+                    lat: 0.0,
+                    lng: 0.0,
+                    name: `Você esta aproximadamente nesse local`,
+                    color: 'green',
+                    address: 'Stok Center BR-116 Galopolis Caxias do Sul'
+                },
+
                 {
                     lat: 0.0,
                     lng: 0.0,
@@ -160,7 +168,7 @@
                         location.lng = parseFloat(longitude)
 
 
-                        console.log(latitude+' '+longitude)
+                        console.log(latitude + ' ' + longitude)
 
 
                     } else {
