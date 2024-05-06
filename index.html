@@ -57,20 +57,20 @@
     <script>
 
 
-        if (localStorage.getItem('latitude')) {
-            window.location.href = 'locais.html';
-        }
+         
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
 
         var location = [
-            { lat: '0' },
-            { long: '0' },
+            {
+                lat: '0',
+                long: '0'
+            },
         ];
 
         document.getElementById('Buscar').addEventListener('click', () => {
 
-            var endereco = document.getElementById('Rua') + " " +document.getElementById('bairro') + " "+document.getElementById('Cidade')
-            
+            var endereco = document.getElementById('Rua').value + " " + document.getElementById('bairro').value + " " + document.getElementById('Cidade').value;
+
 
             geocodeAddress(endereco, function (latitude, longitude) {
                 if (latitude && longitude) {
