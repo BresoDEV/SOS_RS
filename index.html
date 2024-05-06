@@ -1,45 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcadores com Textos e Cores Específicas</title>
-    <style>
-        #map {
-            height: 500px;
-            width: 100%;
-            border-radius: 10px;
-            border: none;
-        }
-
-        body,
-        html {
-            background-color: black;
-
-        }
-
-        * {
-            font-size: 30px;
-            color: aliceblue;
-        }
-
-        button {
-            background-color: rgb(100, 200, 100);
-            width: 70%;
-            border: none;
-            border-radius: 10px;
-            color: white;
-        }
-
-        input {
-            border-radius: 5px;
-            border: none;
-            width: 70%;
-        }
-    </style>
+    <title>Document</title>
 </head>
-
 <body>
     <center>
         <label for="Cidade">Cidade:</label><br>
@@ -54,20 +20,17 @@
         <button id="Buscar">Buscar Locais</button>
     </center>
 
- 
+
 
 </body>
 <script>
 
 
-         
+
     //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
 
-    var location = [
-        {
-            lat: '0',
-            long: '0'
-        },
+    var location = [ 
+
     ];
 
     document.getElementById('Buscar').addEventListener('click', () => {
@@ -80,16 +43,16 @@
 
                 setTimeout(() => {
                     location.lat = parseFloat(latitude)
-                location.long = parseFloat(longitude)
+                    location.long = parseFloat(longitude)
 
-                //while (location.long === '0') { }
+                    //while (location.long === '0') { }
 
-                localStorage.setItem('latitude', location.lat)
-                localStorage.setItem('longitude', location.long)
+                    localStorage.setItem('latitude', location.lat)
+                    localStorage.setItem('longitude', location.long)
 
-                if (localStorage.getItem('latitude')) {
-                    window.location.href = 'locais.html';
-                }
+                    if (localStorage.getItem('latitude')) {
+                        window.location.href = 'locais.html';
+                    }
                 }, 2000);
 
             } else {
@@ -120,7 +83,7 @@
                 callback(null);
             });
     }
-  
+
 
 
 
@@ -130,4 +93,5 @@
 
 
 </script>
-</html>
+ 
+</html> 
