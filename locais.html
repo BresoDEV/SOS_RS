@@ -15,7 +15,7 @@
 
 
         html {
-            background-color: black;
+            background-color: #333;
             height: 90%;
         }
 
@@ -81,7 +81,7 @@
                     lat: parseFloat(localStorage.getItem('latitude')),
                     lng: parseFloat(localStorage.getItem('longitude'))
                 }, // Coordenadas do RS
-                zoom: 15
+                zoom: 18
             });
 
 
@@ -96,29 +96,21 @@
                     lng: parseFloat(localStorage.getItem('longitude')),
                     name: `<b>Você esta aproximadamente nesse local</b>`,
                     color: 'green',
-                    address: ' '
+                    address: 'vazio'
                 },
 
                 {
-                    lat: 0.0,
-                    lng: 0.0,
-                    name: `<b>🧒 </b> Fulano de Tal<br>
-                    <b>Idade:</b>20 anos<br>
-                    <b>Situaçao: </b> 🟢<br>
-                    <b>Necessidades</b><br>
-                    💧🍲🍼⛽🚒🚑🚓🏠🪫🔦💡🚿👚💊🩺 <br>
-                    <b>Ultimo Contato:</b> 06/05/2024<br>
-                    <b>🏠 </b>Rua Antonio Chaves 383 <br>
-                    <b>&#9742; </b>(54)999020659`,
-                    color: 'green',
-                    address: 'Rua Antonio Chaves 383 Galopolis Caxias do Sul'
+                    lat:-30.2326316, lng: -51.1519304,
+                    name: ` 💊 `,
+                    color: 'purple',
+                    address: 'vazio'
                 },
 
 
 
 
                 {
-                    lat: 0.0, lng: 0.0, name: `
+                    lat: '0.0', lng: '0.0', name: `
                     <b>🧑</b> Fulana de Tal<br>
                     <b>Idade:</b>20 anos<br>
                     <b>Situaçao: </b> 🔴<br>
@@ -135,8 +127,8 @@
 
 
                 {
-                    lat: 0.0,
-                    lng: 0.0,
+                    lat: '0.0',
+                    lng: '0.0',
                     name: `<b>Ponto de Coleta:</b>Atacado Vantajão<br>
                     <br><b>Recursos Disponiveis:</b><br>
                     💧🍲<br> <br>
@@ -147,8 +139,8 @@
                 },
 
                 {
-                    lat: 0.0,
-                    lng: 0.0,
+                    lat: '0.0',
+                    lng: '0.0',
                     name: `<b>Ponto de Coleta:</b>Cantina Lunelli<br>
                     <br><b>Recursos Disponiveis:</b><br>
                     💧🍲<br> <br>
@@ -177,39 +169,25 @@
 
 
                 if (location.color !== 'green') {
-                    geocodeAddress(location.address, function (latitude, longitude) {
-                        if (latitude && longitude) {
+                    if (location.address !== 'vazio') {
+                        geocodeAddress(location.address, function (latitude, longitude) {
+                            if (latitude && longitude) {
 
-                            location.lat = parseFloat(latitude)
-                            location.lng = parseFloat(longitude)
-
-
-                            //console.log(latitude + ' ' + longitude)
+                                location.lat = parseFloat(latitude)
+                                location.lng = parseFloat(longitude)
 
 
-                        } else {
-                            console.error("Não foi possível obter as coordenadas.");
-                        }
-                    });
+                                //console.log(latitude + ' ' + longitude)
+
+
+                            } else {
+                                console.error("Não foi possível obter as coordenadas.");
+                            }
+                        });
+                    }
                 }
 
 
-                if (location.lat === 0.0) {
-                    geocodeAddress(location.address, function (latitude, longitude) {
-                        if (latitude && longitude) {
-
-                            location.lat = parseFloat(latitude)
-                            location.lng = parseFloat(longitude)
-
-
-                            //console.log(latitude + ' ' + longitude)
-
-
-                        } else {
-                            console.error("Não foi possível obter as coordenadas.");
-                        }
-                    });
-                }
 
 
 
