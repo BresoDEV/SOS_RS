@@ -39,6 +39,9 @@
     <script>
 
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
+        if (!localStorage.getItem('latitude')) {
+            window.location.href = 'index.html';
+        }
 
 
         function geocodeAddress(address, callback) {
