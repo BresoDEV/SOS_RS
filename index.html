@@ -54,67 +54,71 @@
         <button id="Buscar">Buscar Locais</button>
     </center>
 
-    <script>
+ 
+
+</body>
+<script>
 
 
          
-        //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
+    //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
 
-        var location = [
-            {
-                lat: '0',
-                long: '0'
-            },
-        ];
+    var location = [
+        {
+            lat: '0',
+            long: '0'
+        },
+    ];
 
-        document.getElementById('Buscar').addEventListener('click', () => {
+    document.getElementById('Buscar').addEventListener('click', () => {
 
-            var endereco = document.getElementById('Rua').value + " " + document.getElementById('bairro').value + " " + document.getElementById('Cidade').value;
+        var endereco = document.getElementById('Rua').value + " " + document.getElementById('bairro').value + " " + document.getElementById('Cidade').value;
 
 
-            geocodeAddress(endereco, function (latitude, longitude) {
-                if (latitude && longitude) {
+        geocodeAddress(endereco, function (latitude, longitude) {
+            if (latitude && longitude) {
 
-                    location.lat = parseFloat(latitude)
-                    location.long = parseFloat(longitude)
+                location.lat = parseFloat(latitude)
+                location.long = parseFloat(longitude)
 
-                    //while (location.long === '0') { }
+                //while (location.long === '0') { }
 
-                    localStorage.setItem('latitude', location.lat)
-                    localStorage.setItem('longitude', location.long)
+                localStorage.setItem('latitude', location.lat)
+                localStorage.setItem('longitude', location.long)
 
-                    if (localStorage.getItem('latitude')) {
-                        window.location.href = 'locais.html';
-                    }
-
-                } else {
-                    console.error("Não foi possível obter as coordenadas.");
+                if (localStorage.getItem('latitude')) {
+                    window.location.href = 'locais.html';
                 }
-            });
-        })
+
+            } else {
+                console.error("Não foi possível obter as coordenadas.");
+            }
+        });
+    })
 
 
 
-        function geocodeAddress(address, callback) {
-            var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(address);
+    function geocodeAddress(address, callback) {
+        var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(address);
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length > 0) {
-                        var latitude = data[0].lat;
-                        var longitude = data[0].lon;
-                        callback(latitude, longitude);
-                    } else {
-                        console.error("Endereço não encontrado.");
-                        callback(null);
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao processar a requisição:', error);
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    var latitude = data[0].lat;
+                    var longitude = data[0].lon;
+                    callback(latitude, longitude);
+                } else {
+                    console.error("Endereço não encontrado.");
                     callback(null);
-                });
-        }
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao processar a requisição:', error);
+                callback(null);
+            });
+    }
+  
 
 
 
@@ -123,9 +127,5 @@
 
 
 
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&callback=initMap"
-        async defer></script>
-</body>
-
+</script>
 </html>
