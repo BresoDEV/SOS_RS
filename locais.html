@@ -13,10 +13,10 @@
             border: none;
         }
 
-        body,
+        
         html {
             background-color: black;
-
+height: 90%;
         }
 
         * {
@@ -34,9 +34,13 @@
 </head>
 
 <body>
-    <div id="map"></div>
+    <center>
+        <div id="map"></div>
+    </center>
 
     <script>
+
+        
 
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
         if (!localStorage.getItem('latitude')) {
@@ -45,6 +49,7 @@
 
         console.log('bah '+localStorage.getItem('latitude'))
         console.log('bah '+localStorage.getItem('longitude'))
+        console.log(document.body.scrollHeight)
 
 
         function geocodeAddress(address, callback) {
@@ -75,7 +80,7 @@
                 center: { 
                     lat: parseFloat(localStorage.getItem('latitude')), 
                     lng: parseFloat(localStorage.getItem('longitude')) }, // Coordenadas do RS
-                zoom: 13
+                zoom: 15
             });
 
 
@@ -88,9 +93,9 @@
                 {
                     lat: parseFloat(localStorage.getItem('latitude')),
                     lng: parseFloat(localStorage.getItem('longitude')),
-                    name: `Você esta aproximadamente nesse local`,
+                    name: `<b>Você esta aproximadamente nesse local</b>`,
                     color: 'green',
-                    address: 'Stok Center BR-116 Galopolis Caxias do Sul'
+                    address: ' '
                 },
 
                 {
@@ -221,9 +226,10 @@
                     });
 
 
+                    
                 }, 5000)
 
-
+                
 
 
 
@@ -235,6 +241,19 @@
 
             });
         }
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setInterval(() => {
+            document.getElementById('map').style.height =  (window.innerHeight - (window.innerHeight/10)) +'px';
+            document.getElementById('map').style.width =  (window.innerWidth - (window.innerWidth/10)) +'px';
+ 
+
+        }, 100);
+        });
+        
+        
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&callback=initMap"
         async defer></script>
