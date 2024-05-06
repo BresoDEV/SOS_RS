@@ -31,7 +31,8 @@
             border-radius: 10px;
             color: white;
         }
-        input{
+
+        input {
             border-radius: 5px;
             border: none;
             width: 70%;
@@ -40,29 +41,52 @@
 </head>
 
 <body>
-   <center>
-    <label for="Cidade">Cidade:</label><br>
-    <input type="text" name="Cidade" id="Cidade"><br>
+    <center>
+        <label for="Cidade">Cidade:</label><br>
+        <input type="text" name="Cidade" id="Cidade"><br>
 
-    <label for="bairro">Bairro:</label><br>
-    <input type="text" name="bairro" id="bairro"><br>
+        <label for="bairro">Bairro:</label><br>
+        <input type="text" name="bairro" id="bairro"><br>
 
-    <label for="Rua">Rua:</label><br>
-    <input type="text" name="Rua" id="Rua"><br>
-    <br>
-    <button id="Buscar">Buscar Locais</button>
-   </center>
+        <label for="Rua">Rua:</label><br>
+        <input type="text" name="Rua" id="Rua"><br>
+        <br>
+        <button id="Buscar">Buscar Locais</button>
+    </center>
 
     <script>
 
 
-        if(localStorage.getItem('latitude')){
+        if (localStorage.getItem('latitude')) {
             window.location.href = 'locais.html';
         }
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
 
-        document.getElementById('Buscar').addEventListener('click',()=>{
-            
+        var location = [
+            { lat: '0' },
+            { long: '0' },
+        ];
+
+        document.getElementById('Buscar').addEventListener('click', () => {
+            geocodeAddress(location.address, function (latitude, longitude) {
+                if (latitude && longitude) {
+
+                    location.lat = parseFloat(latitude)
+                    location.long = parseFloat(longitude)
+
+                    while (location.long === '0') { }
+
+                    localStorage.setItem('latitude', location.lat)
+                    localStorage.setItem('longitude', location.long)
+
+                    if (localStorage.getItem('latitude')) {
+                        window.location.href = 'locais.html';
+                    }
+
+                } else {
+                    console.error("Não foi possível obter as coordenadas.");
+                }
+            });
         })
 
 
@@ -88,25 +112,12 @@
                 });
         }
 
- 
-
-               
 
 
-        geocodeAddress(location.address, function (latitude, longitude) {
-                    if (latitude && longitude) {
-
-                        location.lat = parseFloat(latitude)
-                        location.lng = parseFloat(longitude)
 
 
-                        console.log(latitude+' '+longitude)
 
 
-                    } else {
-                        console.error("Não foi possível obter as coordenadas.");
-                    }
-                });
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&callback=initMap"
