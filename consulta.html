@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+    }
+
+    body,
+    html {
+        background-color: black;
+
+    }
+
+    * {
+        font-size: 30px;
+        color: aliceblue;
+    }
+
+    button {
+        background-color: rgb(100, 200, 100);
+        width: 70%;
+        border: none;
+        border-radius: 10px;
+        color: white;
+    }
+
+    input {
+        border-radius: 5px;
+        border: none;
+        width: 70%;
+    }
+</style>
+<body>
+    <center>
+        <label for="Cidade">Cidade:</label><br>
+        <input type="text" name="Cidade" id="Cidade"><br>
+
+        <label for="bairro">Bairro:</label><br>
+        <input type="text" name="bairro" id="bairro"><br>
+
+        <label for="Rua">Rua:</label><br>
+        <input type="text" name="Rua" id="Rua"><br>
+        <br>
+        <button id="Buscar">Consultar Local</button>
+    </center>
+<p id="la"></p>
+<p id="lo"></p>
+
+
+</body>
+<script>
+
+
+
+    //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
+
+    var location = [ 
+
+    ];
+
+    document.getElementById('Buscar').addEventListener('click', () => {
+
+        var endereco = document.getElementById('Rua').value + " " + document.getElementById('bairro').value + " " + document.getElementById('Cidade').value;
+
+
+        geocodeAddress(endereco, function (latitude, longitude) {
+            if (latitude && longitude) {
+
+                setTimeout(() => {
+                    location.lat = parseFloat(latitude)
+                    location.long = parseFloat(longitude)
+
+                    //while (location.long === '0') { }
+                    document.getElementById('la').innerHTML = parseFloat(latitude)
+                    document.getElementById('lo').innerHTML = parseFloat(longitude)
+                    
+                }, 2000);
+
+            } else {
+                console.error("Não foi possível obter as coordenadas.");
+            }
+        });
+    })
+
+
+
+    function geocodeAddress(address, callback) {
+        var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(address);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    var latitude = data[0].lat;
+                    var longitude = data[0].lon;
+                    callback(latitude, longitude);
+                } else {
+                    console.error("Endereço não encontrado.");
+                    callback(null);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao processar a requisição:', error);
+                callback(null);
+            });
+    }
+
+
+
+
+
+
+
+
+
+</script>
+ 
+</html> 
