@@ -26,21 +26,45 @@
 
         button {
             background-color: rgb(100, 200, 100);
-            width: 100%;
+            width: 70%;
             border: none;
             border-radius: 10px;
             color: white;
+        }
+        input{
+            border-radius: 5px;
+            border: none;
+            width: 70%;
         }
     </style>
 </head>
 
 <body>
-    <label for="bairro">Bairro:</label>
-    <input type="text" name="bairro" id="bairro">
+   <center>
+    <label for="Cidade">Cidade:</label><br>
+    <input type="text" name="Cidade" id="Cidade"><br>
+
+    <label for="bairro">Bairro:</label><br>
+    <input type="text" name="bairro" id="bairro"><br>
+
+    <label for="Rua">Rua:</label><br>
+    <input type="text" name="Rua" id="Rua"><br>
+    <br>
+    <button id="Buscar">Buscar Locais</button>
+   </center>
 
     <script>
 
+
+        if(localStorage.getItem('latitude')){
+            window.location.href = 'locais.html';
+        }
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
+
+        document.getElementById('Buscar').addEventListener('click',()=>{
+            
+        })
+
 
 
         function geocodeAddress(address, callback) {
