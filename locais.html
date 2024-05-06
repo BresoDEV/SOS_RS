@@ -13,10 +13,10 @@
             border: none;
         }
 
-        
+
         html {
             background-color: black;
-height: 90%;
+            height: 90%;
         }
 
         * {
@@ -40,15 +40,15 @@ height: 90%;
 
     <script>
 
-        
+
 
         //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
         if (!localStorage.getItem('latitude')) {
-             window.location.href = 'index.html';
+            window.location.href = 'index.html';
         }
 
-        console.log('bah '+localStorage.getItem('latitude'))
-        console.log('bah '+localStorage.getItem('longitude'))
+        console.log('bah ' + localStorage.getItem('latitude'))
+        console.log('bah ' + localStorage.getItem('longitude'))
         console.log(document.body.scrollHeight)
 
 
@@ -77,9 +77,10 @@ height: 90%;
 
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: { 
-                    lat: parseFloat(localStorage.getItem('latitude')), 
-                    lng: parseFloat(localStorage.getItem('longitude')) }, // Coordenadas do RS
+                center: {
+                    lat: parseFloat(localStorage.getItem('latitude')),
+                    lng: parseFloat(localStorage.getItem('longitude'))
+                }, // Coordenadas do RS
                 zoom: 15
             });
 
@@ -175,24 +176,40 @@ height: 90%;
 
 
 
-                if(location.color !== 'green')
-                {
+                if (location.color !== 'green') {
                     geocodeAddress(location.address, function (latitude, longitude) {
-                    if (latitude && longitude) {
+                        if (latitude && longitude) {
 
-                        location.lat = parseFloat(latitude)
-                        location.lng = parseFloat(longitude)
-
-
-                        //console.log(latitude + ' ' + longitude)
+                            location.lat = parseFloat(latitude)
+                            location.lng = parseFloat(longitude)
 
 
-                    } else {
-                        console.error("Não foi possível obter as coordenadas.");
-                    }
-                });
+                            //console.log(latitude + ' ' + longitude)
+
+
+                        } else {
+                            console.error("Não foi possível obter as coordenadas.");
+                        }
+                    });
                 }
 
+
+                if (location.lat === 0.0) {
+                    geocodeAddress(location.address, function (latitude, longitude) {
+                        if (latitude && longitude) {
+
+                            location.lat = parseFloat(latitude)
+                            location.lng = parseFloat(longitude)
+
+
+                            //console.log(latitude + ' ' + longitude)
+
+
+                        } else {
+                            console.error("Não foi possível obter as coordenadas.");
+                        }
+                    });
+                }
 
 
 
@@ -226,10 +243,10 @@ height: 90%;
                     });
 
 
-                    
-                }, 5000)
 
-                
+                }, 2000)
+
+
 
 
 
@@ -243,16 +260,16 @@ height: 90%;
         }
 
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             setInterval(() => {
-            document.getElementById('map').style.height =  (window.innerHeight - (window.innerHeight/10)) +'px';
-            document.getElementById('map').style.width =  (window.innerWidth - (window.innerWidth/10)) +'px';
- 
+                document.getElementById('map').style.height = (window.innerHeight - (window.innerHeight / 10)) + 'px';
+                document.getElementById('map').style.width = (window.innerWidth - (window.innerWidth / 10)) + 'px';
 
-        }, 100);
+
+            }, 100);
         });
-        
-        
+
+
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&callback=initMap"
