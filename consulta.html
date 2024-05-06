@@ -37,6 +37,7 @@
         border-radius: 5px;
         border: none;
         width: 70%;
+        color:black;
     }
 </style>
 <body>
@@ -86,7 +87,7 @@
                 }, 2000);
 
             } else {
-                console.error("Não foi possível obter as coordenadas.");
+                document.getElementById('la').innerHTML = "Não foi possível obter as coordenadas." ;
             }
         });
     })
@@ -104,7 +105,7 @@
                     var longitude = data[0].lon;
                     callback(latitude, longitude);
                 } else {
-                    console.error("Endereço não encontrado.");
+                    document.getElementById('la').innerHTML = "Endereço não encontrado." ;
                     callback(null);
                 }
             })
