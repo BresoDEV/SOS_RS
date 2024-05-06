@@ -78,7 +78,8 @@
         geocodeAddress(endereco, function (latitude, longitude) {
             if (latitude && longitude) {
 
-                location.lat = parseFloat(latitude)
+                setTimeout(() => {
+                    location.lat = parseFloat(latitude)
                 location.long = parseFloat(longitude)
 
                 //while (location.long === '0') { }
@@ -89,6 +90,7 @@
                 if (localStorage.getItem('latitude')) {
                     window.location.href = 'locais.html';
                 }
+                }, 2000);
 
             } else {
                 console.error("Não foi possível obter as coordenadas.");
