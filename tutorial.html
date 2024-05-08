@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+    }
+
+    body,
+    html {
+        background-color: black;
+
+    }
+
+    * {
+        font-size: 30px;
+        color: aliceblue;
+    }
+
+    button {
+        background-color: rgb(100, 200, 100);
+        width: 70%;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-size: medium;
+        padding: 10px;
+    }
+
+    input {
+        border-radius: 5px;
+        border: none;
+        width: 70%;
+        color:black;
+    }
+</style>
+<body>
+    <center><br>
+        <button id="Voltar" style="font-size: medium;background-color: brown;color: aliceblue;">Voltar</button>
+        <br>
+        <br>
+        <br><br>
+        
+    </center>
+
+
+
+</body>
+<script>
+ document.getElementById('Voltar').addEventListener('click', () => {
+        window.location.href = 'add.html';
+    });
+
+
+
+    document.getElementById('addAbrigos').addEventListener('click', () => {
+        window.location.href = 'addAbrigos.html';
+    });
+
+    document.getElementById('addColeta').addEventListener('click', () => {
+        window.location.href = 'addColeta.html';
+    });
+
+   
+    document.getElementById('addVitima').addEventListener('click', () => {
+        window.location.href = 'addVitima.html';
+    });
+
+   
+   
+
+
+
+
+
+
+
+</script>
+ 
+</html> 

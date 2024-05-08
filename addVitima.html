@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body,
+    html {
+        background-color: black;
+
+    }
+
+    * {
+        font-size: 30px;
+        color: aliceblue;
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    label {
+        font-size: medium;
+    }
+
+    button {
+        background-color: rgb(100, 200, 100);
+        width: 70%;
+        border: none;
+        border-radius: 10px;
+        color: rgb(0, 0, 0);
+        padding: 5px;
+    }
+
+    input[type=text],input[type=number] {
+        border-radius: 5px;
+        border: none;
+        width: 70%;
+        color: black;
+        background-color: darkgrey;
+    }
+
+    input[type=checkbox] {
+        font-size: xx-large;
+    }
+
+    h5 {
+        font-size: small;
+        color: aqua;
+    }
+
+    textarea {
+        width: 70%;
+        font-size: medium;
+        color: black;
+    }
+</style>
+
+<body>
+    <center>
+        <br>
+        <button id="Voltar" style="font-size: medium;background-color: brown;color: aliceblue;">Voltar</button>
+        <br>
+        <br>
+        <h2>Pedidos de Socorro</h2>
+
+        <label for="Local">Ultimo local que foi avistada:</label><br>
+        <input required type="text" name="Local" id="Local"><br>
+        
+        <label for="Vitima">Nome da Vitima:</label><br>
+        <input required type="text" name="Vitima" id="Vitima"><br>
+
+        <label for="Idade">Idade da Vitima:</label><br>
+        <input required type="number" name="Idade" id="Idade"><br>
+
+        <label for="TelefoneResponsavel">Telefone do Responsavel/Contato:</label><br>
+        <input required placeholder="(DDD)+Numero" type="text" name="TelefoneResponsavel" id="TelefoneResponsavel"><br>
+
+        <label for="Cidade">Cidade:</label><br>
+        <input required type="text" name="Cidade" id="Cidade"><br>
+
+        <label for="bairro">Bairro:</label><br>
+        <input required type="text" name="bairro" id="bairro"><br>
+
+        <label for="Rua">Endereço Completo:</label><br>
+        <input required type="text" name="Rua" id="Rua"><br>
+        <br>
+        Necessidades Urgentes: <br>
+        <h5>Selecione marcando a caixinha</h5>
+
+
+        <input type="checkbox" name="Agua" id="Agua" value="&#128167;">
+        <label for="Agua">&#128167; Agua</label><br>
+
+        <input type="checkbox" name="Comida" id="Comida" value="&#127858;">
+        <label for="Comida">&#127858; Comida</label><br>
+
+        <input type="checkbox" name="Camas" id="Camas" value="&#128719;">
+        <label for="Camas">&#128719; Camas</label><br>
+
+        <input type="checkbox" name="Brinquedos" id="Brinquedos" value="&#129528;">
+        <label for="Brinquedos">&#129528; Brinquedos</label><br>
+
+        <input type="checkbox" name="Medicamentos" id="Medicamentos" value="&#128138;">
+        <label for="Medicamentos">&#128138; Medicamentos</label><br>
+
+        <input type="checkbox" name="Roupas" id="Roupas" value="&#128090;">
+        <label for="Roupas">&#128090; Roupas</label><br>
+
+        <input type="checkbox" name="Calcados" id="Calcados" value="&#128095;">
+        <label for="Calcados">&#128095; Calçados</label><br>
+
+        <input type="checkbox" name="Chuveiro" id="Chuveiro" value="&#128703;">
+        <label for="Chuveiro">&#128703; Chuveiro</label><br>
+
+        <input type="checkbox" name="ItensBebes" id="ItensBebes" value="&#127868;">
+        <label for="ItensBebes">&#127868; Itens para Bebes</label><br>
+
+        <input type="checkbox" name="ItensHigiene" id="ItensHigiene" value="&#129524;">
+        <label for="ItensHigiene">&#129524; Itens de Higiene</label><br>
+
+        <input type="checkbox" name="Combustivel" id="Combustivel" value="&#9981;">
+        <label for="Combustivel">&#9981; Combustivel</label><br>
+
+        <br>
+        <br>
+        <button id="Buscar">Adicionar Vitima</button>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <textarea name="txt" id="txt" cols="30" rows="10"></textarea>
+    </center>
+
+
+
+</body>
+<script>
+ document.getElementById('Voltar').addEventListener('click', () => {
+        window.location.href = 'add.html';
+    });
+
+
+
+    //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
+
+
+
+
+    document.getElementById('Buscar').addEventListener('click', () => {
+
+
+        const Local = document.getElementById('Local').value;
+        const Vitima = document.getElementById('Vitima').value;
+        const Idade = document.getElementById('Idade').value;
+        const TelefoneResponsavel = document.getElementById('TelefoneResponsavel').value;
+        const Cidade = document.getElementById('Cidade').value;
+        const bairro = document.getElementById('bairro').value;
+        const Rua = document.getElementById('Rua').value;
+
+        const Agua = document.getElementById('Agua');
+        const Comida = document.getElementById('Comida');
+        const Camas = document.getElementById('Camas');
+        const Brinquedos = document.getElementById('Brinquedos');
+        const Medicamentos = document.getElementById('Medicamentos');
+        const Roupas = document.getElementById('Roupas');
+        const Calcados = document.getElementById('Calcados');
+        const Chuveiro = document.getElementById('Chuveiro');
+        const ItensBebes = document.getElementById('ItensBebes');
+        const ItensHigiene = document.getElementById('ItensHigiene');
+        const Combustivel = document.getElementById('Combustivel');
+
+        const txt = document.getElementById('txt');
+        //const  = document.getElementById('');
+        //const  = document.getElementById('');
+        //const  = document.getElementById('');
+
+        var suprimentos = '';
+
+        if (Agua.checked) { suprimentos += Agua.value; }
+        if (Comida.checked) { suprimentos += Comida.value; }
+        if (Camas.checked) { suprimentos += Camas.value; }
+        if (Brinquedos.checked) { suprimentos += Brinquedos.value; }
+        if (Medicamentos.checked) { suprimentos += Medicamentos.value; }
+        if (Roupas.checked) { suprimentos += Roupas.value; }
+        if (Calcados.checked) { suprimentos += Calcados.value; }
+        if (Chuveiro.checked) { suprimentos += Chuveiro.value; }
+        if (ItensBebes.checked) { suprimentos += ItensBebes.value; }
+        if (ItensHigiene.checked) { suprimentos += ItensHigiene.value; }
+        if (Combustivel.checked) { suprimentos += Combustivel.value; }
+
+
+        var final = `{lat: '0.0', lng: '0.0', name: '<b>Nome: </b>${Vitima}<br><b>Idade:</b>${Idade} anos<br> <b>Necessidades Urgentes</b><br>${suprimentos} <br><b>🏠</b>${Rua} <br><b>Ultimo avistamento</b>${Local} <br><b>&#9742; </b>${TelefoneResponsavel}',color: 'red',address: '${Rua}, ${bairro} , ${Cidade}'},`;
+
+        txt.value = final;
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

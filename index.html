@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,8 @@
         border: none;
         border-radius: 10px;
         color: white;
+        font-size: medium;
+        padding: 10px;
     }
 
     input {
@@ -42,6 +44,10 @@
 </style>
 <body>
     <center>
+        <hr>
+        Preencha abaixo, com seu endereço, para poder localizar pontos próximos a você:
+        <br>
+        <hr>
         <label for="Cidade">Cidade:</label><br>
         <input type="text" name="Cidade" id="Cidade"><br>
 
@@ -51,10 +57,9 @@
         <label for="Rua">Rua:</label><br>
         <input type="text" name="Rua" id="Rua"><br>
         <br>
-        <button id="Buscar">Buscar Locais</button>
+        <button id="Buscar">Buscar Locais Próximos</button>
         <br>
         <hr>
-        <br>
         <p>Tem um local que deseja divulgar?</p>
         <button id="Add">Adicionar Locais</button>
     </center>
@@ -66,15 +71,14 @@
 
 
 
+
     //AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8
 
-    var location = [ 
-
-    ];
+ 
 
 
     document.getElementById('Add').addEventListener('click', () => {
-        
+        window.location.href = 'add.html';
     });
 
     document.getElementById('Buscar').addEventListener('click', () => {
